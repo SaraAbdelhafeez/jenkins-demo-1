@@ -3,7 +3,7 @@ pipeline {
   environment{
         
         registry = "http://107.20.16.61:8081/repository/docker-hosted/"
-        registryCredential = 'nexus-credentials'        
+        NEXUS_CREDENTIALS = credentials('nexus-credentials')        
   }
   stages {
     stage('build') {
@@ -11,14 +11,9 @@ pipeline {
        sh 'docker build -t image-sara .'
       }
     }
-    stage('upload to nexus') {
+    stage('Login') {
       steps {
-       // withCredentials([gitUsernamePassword(credentialsId: 'nexus-credentials', gitToolName: 'Default')]) {
-         // sh 'docker push http://107.20.16.61:8081/repository/docker-hosted/image-sara'
-
-        //}
-        docker.withRegistry(registry, registryCredential ) {
-          dockerImage.push() }
+        sh 'echo $NEXUS_CREDENTIALS_PSW | docker login -u $NEXUS_CREDENTIALS_USR --password-stdin'
       }
     }
   }
