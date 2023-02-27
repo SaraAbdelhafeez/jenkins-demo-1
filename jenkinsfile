@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
-       sh 'docker build -t image-sara .'
+       sh 'docker build -t 107.20.16.61:5003/image-sara .'
       }
     }
     stage('Login') {
