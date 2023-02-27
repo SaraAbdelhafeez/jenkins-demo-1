@@ -19,7 +19,7 @@ pipeline {
     
     stage('Push') {
       steps {
-        sh 'docker push ${registry}/image-sara'
+        sh 'docker push 107.20.16.61:5003/image-sara'
       }
   }}
 
