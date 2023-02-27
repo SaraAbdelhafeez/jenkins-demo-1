@@ -2,7 +2,7 @@ pipeline {
   agent any 
   environment{
         
-        registry = "http://107.20.16.61:8081/repository/docker-hosted/"
+        registry = "http://107.20.16.61:5003/repository/docker-hosted/"
         NEXUS_CREDENTIALS = credentials('nexus-credentials')        
   }
   stages {
@@ -13,7 +13,7 @@ pipeline {
     }
     stage('Login') {
       steps {
-        sh 'echo $NEXUS_CREDENTIALS_PSW | docker login -u $NEXUS_CREDENTIALS_USR --password-stdin'
+        sh 'echo $NEXUS_CREDENTIALS_PSW | docker login $registry -u $NEXUS_CREDENTIALS_USR --password-stdin'
       }
     }
   }
