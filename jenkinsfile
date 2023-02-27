@@ -16,6 +16,11 @@ pipeline {
         sh 'echo $NEXUS_CREDENTIALS_PSW | docker login $registry -u $NEXUS_CREDENTIALS_USR --password-stdin'
       }
     }
+    
+    stage('Push') {
+      steps {
+        sh 'docker push $registry/image-sara'
+      }
   }
 
 }
