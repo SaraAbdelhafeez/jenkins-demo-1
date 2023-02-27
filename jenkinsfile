@@ -2,7 +2,7 @@ pipeline {
   agent any 
   environment{
         
-        registry = "http://107.20.16.61:5003/repository/docker-hosted/"
+        registry = "http://107.20.16.61:5003/repository/docker-hosted"
         NEXUS_CREDENTIALS = credentials('nexus-credentials')        
   }
   stages {
