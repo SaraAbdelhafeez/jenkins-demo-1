@@ -1,0 +1,17 @@
+pipline {
+  agent any 
+  enviroment {
+    imageName = 'image-sara'
+    registryCredentials = "nexus-credentials"
+    registry = "ec2-user@ec2-107-20-16-61.compute-1.amazonaws.com:8085"
+    dockerImage = ''
+  }
+  stages {
+    stage('build') {
+      steps {
+        dockerImage = docker.build imageName
+      }
+    }
+  }
+
+}
