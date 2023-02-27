@@ -7,6 +7,14 @@ pipeline {
        sh 'docker build -t image-sara .'
       }
     }
+    stage('upload to nexus') {
+      steps {
+        withCredentials([gitUsernamePassword(credentialsId: 'nexus-credentials', gitToolName: 'Default')]) {
+          sh 'docker push http://107.20.16.61:8081/repository/docker-hosted/image-sara'
+
+        }
+      }
+    }
   }
 
 }
